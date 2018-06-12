@@ -1,0 +1,361 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+% \documentclass{beamer}
+\documentclass[handout]{beamer} % Disable animation temporally
+
+% Replace the \documentclass declaration above
+% with the following two lines to typeset your 
+% lecture notes as a handout:
+%\documentclass{article}
+%\usepackage{beamerarticle}
+
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\usepackage{appendixnumberbeamer} % New beamer numbers in appendix
+
+\title[]{\large Estimation of improved PM$_{2.5}$ exposures from satellite and low-cost sensors for use in a population-based study of PM$_{2.5}$ and renal disease in California, USA}
+
+% A subtitle is optional and this may be deleted
+%\subtitle{Optional Subtitle}
+
+\author[]{Jianzhao Bi\inst{1} \and \textcolor[rgb]{0.1,0.6,0.1}{Yang Liu}\inst{1}\inst{*}}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Emory University] % (optional, but mostly needed)
+{
+  \inst{1}%
+  Environmental Health Sciences\\
+  Emory University
+ }
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{\today}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+%\subject{Theoretical Computer Science}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+\pgfdeclareimage[height=1cm]{logo}{img/logo}
+\logo{\pgfuseimage{logo}}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Add page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Background and Objectives}
+\subsection{Background}
+\begin{frame}{Background}
+    \begin{itemize}
+        \item<1-> PM$_{2.5}$ is known to trigger or worsen various health outcomes (\textit{e.g.,} heart attack, asthma, and other respiratory problems)
+        \item<2-> Regulatory air quality stations for PM$_{2.5}$ measurements lack spatiotemporal coverage
+        \item<3-> Satellite-based aerosol optical depth (AOD) has been increasingly applied to the large-scale PM$_{2.5}$ monitoring
+    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\textwidth]{img/pm25.jpg}
+        \label{fig:pm25}
+    \end{figure}
+    \vspace{-0.5cm}
+    \hspace{0.8cm} \textit{\footnotesize *van Donkelaar et al., EHP, 2010}
+\end{frame}
+
+\begin{frame}{Problems}
+    \setbeamercovered{transparent} 
+    \begin{enumerate}
+        \item<1> Non-random missing data caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
+            \begin{itemize}
+                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD and PM$_{2.5}$}
+                \item \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow interaction}
+            \end{itemize}
+        \item<2> The sparse regulatory monitoring network limiting PM$_{2.5}$ estimations with spatial details
+            \begin{itemize}
+                \item \textcolor[rgb]{1,0.4,0}{Inaccurate estimations in the areas with no station}
+                \item \textcolor[rgb]{1,0.4,0}{Underuse of low-cost, portable PM$_{2.5}$ sensors (\textit{e.g.,} PurpleAir)}
+            \end{itemize}
+        \item<3> Evidence of the relationship between long-term PM$_{2.5}$ exposure and renal function decline
+            \begin{itemize}
+                \item \textcolor[rgb]{1,0.4,0}{Unknown effect of short-term PM$_{2.5}$ exposure}
+                \item \textcolor[rgb]{1,0.4,0}{Worth studying with improved PM$_{2.5}$ exposures}
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\subsection{Objectives}
+\begin{frame}{Objectives}
+    \setbeamercovered{transparent} 
+    \begin{enumerate}
+        \item<1> Missing satellite AOD caused by cloud and snow (Aim 1)
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{Build a gap-filling model combining snow and cloud features to estimate missing AOD data in the areas with extensive snow and cloud covers}
+            \end{itemize}
+        \item<2> Insufficient ground PM$_{2.5}$ monitoring stations (Aim 2)
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{Establish a calibration model to correct the biases of low-cost PM$_{2.5}$ sensors}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{Build a prediction model incorporating the calibrated measurements to predict PM$_{2.5}$ exposures with spatial details}
+            \end{itemize}
+        \item<3> Effect of short-term PM$_{2.5}$ exposure on renal disease (Aim 3)
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{Conduct a time-series study analyzing the association between short-term PM$_{2.5}$ exposure and renal disease\footnote{Emergency department (ED) visits for renal disease} based on the improved PM$_{2.5}$ estimations}
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Specific Aims}
+\subsection{Aim 1}
+\begin{frame}{Aim 1}{AOD gap-filling with snow/cloud interactions}
+    \begin{block}{Approach}
+        \begin{itemize}
+            \item AOD gap-filling model: based on \textbf{machine learning algorithms}\footnote{Random Forests or Neural Networks}
+                \begin{align*}
+                    \mathrm{AOD_{\mathit{st}}} = & \mathrm{f(Snow/Cloud\;Frac_{\mathit{st}}, Meteorological\;Term_{\mathit{st}},}\\
+                    &\mathrm{Landuse\;Term_\mathit{s}, Spatial\;Coord_\mathit{s})}
+                \end{align*}
+        \end{itemize}
+    \end{block}
+    \vspace{-15pt}
+    \pause
+    \begin{block}{Study Domain}
+        \begin{itemize}
+            \item \textbf{New York State} where there are extensive snow cover and significant missing AOD data
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Aim 1}{AOD gap-filling with snow/cloud interactions}
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.6\textwidth]{img/ny.jpg}
+        \label{fig:aim1}
+    \end{figure}
+\end{frame}
+
+\subsection{Aim 2}
+\begin{frame}{Aim 2}{Low-cost sensor calibration and PM$_{2.5}$ exposure assessment}
+    \begin{block}{Approach}
+        \begin{itemize}
+            \item Low-cost sensor calibration
+                \begin{itemize}
+                    \item \textbf{Polynomial regression model} for the collocated EPA/PurpleAir sensors
+                    \item \textbf{Kriging with external drift} for the other PurpleAir sensors
+                \end{itemize}
+            \pause
+            \item PM$_{2.5}$ exposure assessment
+                \begin{itemize}
+                    \item \textbf{Statistical or machine learning models} with calibrated PM$_{2.5}$ measurements
+                \end{itemize}
+        \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{Study Domain}
+        \begin{itemize}
+            \item \textbf{Southern California} where there are dense PurpleAir networks and high PM$_{2.5}$ pollution levels
+        \end{itemize}
+        
+    \end{block}
+\end{frame}
+
+\begin{frame}{Aim 2}{Low-cost sensor calibration and PM$_{2.5}$ exposure assessment}
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.6\textwidth]{img/ca.jpg}
+        \label{fig:aim2}
+    \end{figure}
+\end{frame}
+
+\subsection{Aim 3}
+\begin{frame}{Aim 3}{Short-term PM$_{2.5}$ exposure and ED visits for renal disease}
+    \setbeamercovered{transparent} 
+    \begin{block}{Approach}
+        \begin{itemize}
+        \setlength{\belowdisplayskip}{-10pt}
+            \item<1> Poisson regression with distributed lag and ZIP code-specific effects
+                \begin{equation*}
+                    \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+\sum_k\lambda_k\mathrm{ZIP}_k+[\mathrm{covariates}]
+                \end{equation*}
+            \item<2> Two-level Bayesian random-effects meta-analysis
+                \begin{enumerate}
+                \setlength{\belowdisplayskip}{-10pt}
+                    \item First level: for each ZIP code area$$ \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+[\mathrm{covariates}]$$
+                    \setlength{\belowdisplayskip}{-10pt}
+                    \item Second level: for all ZIP code effects
+                    $$\beta_k=\theta_k+\epsilon_k; \quad \epsilon_k\sim N(0, \hat{V}_k)$$
+                \end{enumerate}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Aim 3}{Short-term PM$_{2.5}$ exposure and ED visits for renal disease}
+    \begin{block}{Study Domain}
+        \begin{itemize}
+        \item Extended from Southern California to \textbf{more major cities in California} with high populations and dense PurpleAir networks (\textit{e.g.,} San Francisco Bay Area, Sacramento, and Fresno).
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Aim 3}{Short-term PM$_{2.5}$ exposure and ED visits for renal disease}
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.6\textwidth]{img/ca.jpg}
+        \label{fig:aim3}
+    \end{figure}
+\end{frame}
+
+\section{Q\&A}
+\begin{frame}
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+% All of the following is optional and typically not needed. 
+\appendix
+\section<presentation>*{\appendixname}
+
+\begin{frame}{PM$_{2.5}$ Prediction Model}
+    \begin{align*}
+        \mathrm{PM_{2.5\mathit{st}}=\mathit{f}(Satellite\;AOD_{\mathit{st}},PM_{2.5}\;cov_{\mathit{st}},Meteorological\;term_{\mathit{st}}, } \\
+        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Benchmark Strategy for Low-cost PM$_{2.5}$ Measurements}
+    \begin{block}{Step 1}
+            \begin{equation*}
+        \mathrm{\sqrt{PredPM_\mathit{st}}=\beta_0+\beta_1 \sqrt{MPM_\mathit{t}}+s(X,Y)_\mathit{s}+\epsilon_\mathit{st}}
+    \end{equation*}
+    \end{block}
+    \begin{block}{Step 2}
+        \begin{align*}
+        \mathrm{PM_{2.5\mathit{st}}=\mathit{f}(Satellite\;AOD_{\mathit{st}},Sensor\;PM_{2.5\mathit{st}},Meteorological\;term_{\mathit{st}},}\\
+        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
+        \end{align*}
+    \end{block}
+    
+    
+\end{frame}
+
+\begin{frame}{Polynomial Regression}
+    \begin{align*}
+        \begin{split}
+        y_1=\beta_{n1}x^n+\beta_{(n-1)1}x^{n-1}+&\cdots+\beta_{21}x^2+\beta_{11}x+\beta_{01} \\
+        y_2=\beta_{n2}x^n+\beta_{(n-1)2}x^{n-1}+&\cdots+\beta_{22}x^2+\beta_{12}x+\beta_{02} \\
+        &\vdots \\
+        y_m=\beta_{nm}x^n+\beta_{(n-1)m}x^{n-1}+&\cdots+\beta_{2m}x^2+\beta_{1m}x+\beta_{0m}
+        \end{split}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Kriging with External Drift}
+    \begin{align*}
+        \begin{split}
+        \hat{\beta}^{ked}_0(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_0(s_i,t) \\
+        \hat{\beta}^{ked}_1(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_1(s_i,t) \\
+        &\vdots \\
+        \hat{\beta}^{ked}_n(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_n(s_i,t) 
+        \end{split}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ Composition Estimation}
+    \begin{equation*}
+        \mathrm{Improved\;component_\mathit{i}=Improved\;PM_{2.5}\times\frac{CTM\;component_\mathit{i}}{CTM\;PM_{2.5}}}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Challenges and Possible Solutions}
+    \begin{enumerate}
+        \item Effectively calibrate and utilize the low-cost sensors in PM$_{2.5}$ prediction
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{incorporating related meteorological variables in the calibration model (\textit{e.g.,} temperature and relative humidity)}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{incorporating CTM-simulated PM$_{2.5}$ components in order to reflect component-related quality degradation}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{Optimal Interpolation (OI), Ensemble Kalman Filtering (EnKF), and the Fourier transform}
+            \end{itemize}
+        \item the lack of statistical power in the time-series model due to the limited sample size
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{extend the study domain to more US states in which the low-cost sensor measurements are available}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{combining some small ZIP code areas with similar spatiotemporal patterns of PM$_{2.5}$ pollution (classification)}
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ Derived from EPA Stations \& Low-cost Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.52\textwidth]{img/appendix/aqs.jpg}
+        \includegraphics[width=0.52\textwidth]{img/appendix/aqs_dylos.jpg}
+        \label{fig:lowcost}
+    \end{figure}
+\end{frame}
+
+\end{document}
+
+
