@@ -55,7 +55,7 @@
 
 \usepackage{appendixnumberbeamer} % New beamer numbers in appendix
 
-\title[]{\large Estimation of improved PM$_{2.5}$ exposures from satellite and low-cost sensors for use in a population-based study of PM$_{2.5}$ and renal disease in California, USA}
+\title[]{\large Estimation of improved PM$_{2.5}$ exposures from satellite and low-cost sensors for use in a population-based study of PM$_{2.5}$ and renal disease}
 
 % A subtitle is optional and this may be deleted
 %\subtitle{Optional Subtitle}
@@ -117,35 +117,65 @@
     \begin{itemize}
         \item<1-> PM$_{2.5}$ is known to trigger or worsen various health outcomes (\textit{e.g.,} heart attack, asthma, and other respiratory problems)
         \item<2-> Regulatory air quality stations for PM$_{2.5}$ measurements lack spatiotemporal coverage
-        \item<3-> Satellite-based aerosol optical depth (AOD) has been increasingly applied to the large-scale PM$_{2.5}$ monitoring
+        \item<3-> Satellite aerosol optical depth (AOD) has been increasingly applied to supplement ground PM$_{2.5}$ measurements
     \end{itemize}
+    \vspace{-0.25cm}
     \begin{figure}
         \centering
-        \includegraphics[width=0.85\textwidth]{img/pm25.jpg}
+        \includegraphics[width=0.83\textwidth]{img/satellite_aod.jpg}
         \label{fig:pm25}
     \end{figure}
-    \vspace{-0.5cm}
-    \hspace{0.8cm} \textit{\footnotesize *van Donkelaar et al., EHP, 2010}
 \end{frame}
 
 \begin{frame}{Problems}
     \setbeamercovered{transparent} 
     \begin{enumerate}
-        \item<1> Non-random missing data caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
+        \item<1> Non-random missing satellite AOD caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD and PM$_{2.5}$}
-                \item \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow interaction}
+                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD and PM$_{2.5}$ levels}
+                \item \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow-AOD interaction}
             \end{itemize}
-        \item<2> The sparse regulatory monitoring network limiting PM$_{2.5}$ estimations with spatial details
+        \textcolor[rgb]{0.1,0.1,0.6}{Cloud and snow led to a $\sim$80\% missing AOD data in New York State in 2015}
+    \end{enumerate}
+    \vspace{-0.1cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{img/missing.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Problems}
+    \setbeamercovered{transparent} 
+    \begin{enumerate}
+        \setcounter{enumi}{1}
+        \item Sparse regulatory monitoring networks which limit PM$_{2.5}$ estimations with spatial details
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Inaccurate estimations in the areas with no station}
+                \item \textcolor[rgb]{1,0.4,0}{Inaccurate estimations in the areas without ground stations}
                 \item \textcolor[rgb]{1,0.4,0}{Underuse of low-cost, portable PM$_{2.5}$ sensors (\textit{e.g.,} PurpleAir)}
             \end{itemize}
-        \item<3> Evidence of the relationship between long-term PM$_{2.5}$ exposure and renal function decline
+        \textcolor[rgb]{0.1,0.1,0.6}{In California, there are 629 PurpleAir and 154 EPA stations}
+    \end{enumerate}
+    \vspace{-0.2cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.48\textwidth]{img/bayarea.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Problems}
+    \setbeamercovered{transparent} 
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item Evidence showing the relationship between long-term PM$_{2.5}$ exposure and renal function decline
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Unknown effect of short-term PM$_{2.5}$ exposure}
-                \item \textcolor[rgb]{1,0.4,0}{Worth studying with improved PM$_{2.5}$ exposures}
+                \item \textcolor[rgb]{1,0.4,0}{Unknown effect of short-term PM$_{2.5}$ exposure on the kidney}
+                \item \textcolor[rgb]{1,0.4,0}{Worthy of being studied with improved PM$_{2.5}$ exposures}
             \end{itemize}
+        \textcolor[rgb]{0.1,0.1,0.6}{Inhaled inert gold nanoparticles enter the bloodstreams and are detected in the urine within minutes after exposure \textit{\small (Miller et al., ACS Nano, 2017)}}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/exposure.jpg}
+        \end{figure}
     \end{enumerate}
 \end{frame}
 
@@ -169,12 +199,19 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Objectives}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/flow.png}
+    \end{figure}
+\end{frame}
+
 \section{Specific Aims}
 \subsection{Aim 1}
 \begin{frame}{Aim 1}{AOD gap-filling with snow/cloud interactions}
     \begin{block}{Approach}
         \begin{itemize}
-            \item AOD gap-filling model: based on \textbf{machine learning algorithms}\footnote{Random Forests or Neural Networks}
+            \item \textbf{AOD gap-filling model} based on machine learning algorithms\footnote{Random Forests or Neural Networks}
                 \begin{align*}
                     \mathrm{AOD_{\mathit{st}}} = & \mathrm{f(Snow/Cloud\;Frac_{\mathit{st}}, Meteorological\;Term_{\mathit{st}},}\\
                     &\mathrm{Landuse\;Term_\mathit{s}, Spatial\;Coord_\mathit{s})}
@@ -204,8 +241,8 @@
         \begin{itemize}
             \item Low-cost sensor calibration
                 \begin{itemize}
-                    \item \textbf{Polynomial regression model} for the collocated EPA/PurpleAir sensors
-                    \item \textbf{Kriging with external drift} for the other PurpleAir sensors
+                    \item \textbf{Polynomial regression model} with measurements from EPA stations and nearby PurpleAir sensors
+                    \item \textbf{Kriging with external drift} for the interpolation of calibration coefficients 
                 \end{itemize}
             \pause
             \item PM$_{2.5}$ exposure assessment
@@ -226,7 +263,7 @@
 \begin{frame}{Aim 2}{Low-cost sensor calibration and PM$_{2.5}$ exposure assessment}
     \begin{figure}
         \centering
-        \includegraphics[height=0.6\textwidth]{img/ca.jpg}
+        \includegraphics[height=0.55\textwidth]{img/socal.jpg}
         \label{fig:aim2}
     \end{figure}
 \end{frame}
@@ -237,23 +274,16 @@
     \begin{block}{Approach}
         \begin{itemize}
         \setlength{\belowdisplayskip}{-10pt}
-            \item<1> Poisson regression with distributed lag and ZIP code-specific effects
-                \begin{equation*}
-                    \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+\sum_k\lambda_k\mathrm{ZIP}_k+[\mathrm{covariates}]
-                \end{equation*}
+            \item<1> \textbf{Poisson regression} with distributed lag and ZIP code-specific effects
             \item<2> Two-level Bayesian random-effects meta-analysis
                 \begin{enumerate}
                 \setlength{\belowdisplayskip}{-10pt}
-                    \item First level: for each ZIP code area$$ \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+[\mathrm{covariates}]$$
+                    \item First level: \textbf{Poisson regression} for each ZIP code area
                     \setlength{\belowdisplayskip}{-10pt}
-                    \item Second level: for all ZIP code effects
-                    $$\beta_k=\theta_k+\epsilon_k; \quad \epsilon_k\sim N(0, \hat{V}_k)$$
+                    \item Second level: \textbf{Bayesian meta-analysis} for all ZIP code effects
                 \end{enumerate}
         \end{itemize}
     \end{block}
-\end{frame}
-
-\begin{frame}{Aim 3}{Short-term PM$_{2.5}$ exposure and ED visits for renal disease}
     \begin{block}{Study Domain}
         \begin{itemize}
         \item Extended from Southern California to \textbf{more major cities in California} with high populations and dense PurpleAir networks (\textit{e.g.,} San Francisco Bay Area, Sacramento, and Fresno).
@@ -276,60 +306,13 @@
     \end{center}
 \end{frame}
 
+% -------------------------------------------- %
+% ----------------- Appendix ----------------- %
+% -------------------------------------------- %
+
 % All of the following is optional and typically not needed. 
 \appendix
 \section<presentation>*{\appendixname}
-
-\begin{frame}{PM$_{2.5}$ Prediction Model}
-    \begin{align*}
-        \mathrm{PM_{2.5\mathit{st}}=\mathit{f}(Satellite\;AOD_{\mathit{st}},PM_{2.5}\;cov_{\mathit{st}},Meteorological\;term_{\mathit{st}}, } \\
-        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
-    \end{align*}
-\end{frame}
-
-\begin{frame}{Benchmark Strategy for Low-cost PM$_{2.5}$ Measurements}
-    \begin{block}{Step 1}
-            \begin{equation*}
-        \mathrm{\sqrt{PredPM_\mathit{st}}=\beta_0+\beta_1 \sqrt{MPM_\mathit{t}}+s(X,Y)_\mathit{s}+\epsilon_\mathit{st}}
-    \end{equation*}
-    \end{block}
-    \begin{block}{Step 2}
-        \begin{align*}
-        \mathrm{PM_{2.5\mathit{st}}=\mathit{f}(Satellite\;AOD_{\mathit{st}},Sensor\;PM_{2.5\mathit{st}},Meteorological\;term_{\mathit{st}},}\\
-        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
-        \end{align*}
-    \end{block}
-    
-    
-\end{frame}
-
-\begin{frame}{Polynomial Regression}
-    \begin{align*}
-        \begin{split}
-        y_1=\beta_{n1}x^n+\beta_{(n-1)1}x^{n-1}+&\cdots+\beta_{21}x^2+\beta_{11}x+\beta_{01} \\
-        y_2=\beta_{n2}x^n+\beta_{(n-1)2}x^{n-1}+&\cdots+\beta_{22}x^2+\beta_{12}x+\beta_{02} \\
-        &\vdots \\
-        y_m=\beta_{nm}x^n+\beta_{(n-1)m}x^{n-1}+&\cdots+\beta_{2m}x^2+\beta_{1m}x+\beta_{0m}
-        \end{split}
-    \end{align*}
-\end{frame}
-
-\begin{frame}{Kriging with External Drift}
-    \begin{align*}
-        \begin{split}
-        \hat{\beta}^{ked}_0(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_0(s_i,t) \\
-        \hat{\beta}^{ked}_1(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_1(s_i,t) \\
-        &\vdots \\
-        \hat{\beta}^{ked}_n(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_n(s_i,t) 
-        \end{split}
-    \end{align*}
-\end{frame}
-
-\begin{frame}{PM$_{2.5}$ Composition Estimation}
-    \begin{equation*}
-        \mathrm{Improved\;component_\mathit{i}=Improved\;PM_{2.5}\times\frac{CTM\;component_\mathit{i}}{CTM\;PM_{2.5}}}
-    \end{equation*}
-\end{frame}
 
 \begin{frame}{Challenges and Possible Solutions}
     \begin{enumerate}
@@ -347,6 +330,77 @@
     \end{enumerate}
 \end{frame}
 
+\subsection*{Aim 1}
+
+\begin{frame}{PM$_{2.5}$ Prediction Model}
+    \begin{align*}
+        \mathrm{PM_{2.5\mathit{st}}=f(Satellite\;AOD_{\mathit{st}},PM_{2.5}\;cov_{\mathit{st}},Meteorological\;term_{\mathit{st}}, } \\
+        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Relationship between PM$_{2.5}$ and AOD}
+    AOD is defined as the integral of aerosol extinction coefficients along the entire vertical atmospheric column. Its relationship with ground-level PM2.5, assuming a well-mixed boundary layer and no pollution layers aloft, can be expressed as (Koelemeijer et al., 2006)
+    \begin{equation*}
+        PM_{2.5}=\frac{4\rho r_{eff}}{3f(RH)\times Q_{ext,dry}}\times\frac{f_{PBL}}{H_{PBL}}\times AOD
+    \end{equation*}
+    where $\rho$ is particle density ($g/m^3$); $r_{eff}$ is particle effective radius; $f(RH)$ is the ratio of ambient and dry extinction coefficients; $Q_{ext,dry}$ is particle extinction efficiency; $f_{PBL}$ is the AOD fraction in the boundary layer; $H_{PBL}$ is the boundary layer height.
+\end{frame}
+
+\subsection*{Aim 2}
+
+\begin{frame}{Benchmark Strategy for Low-cost PM$_{2.5}$ Measurements}
+    \begin{block}{Step 1}
+            \begin{equation*}
+        \mathrm{\sqrt{PredPM_\mathit{st}}=\beta_0+\beta_1 \sqrt{MPM_\mathit{t}}+s(X,Y)_\mathit{s}+\epsilon_\mathit{st}}
+    \end{equation*}
+    \end{block}
+    \begin{block}{Step 2}
+        \begin{align*}
+        \mathrm{PM_{2.5\mathit{st}}=f(Satellite\;AOD_{\mathit{st}},Sensor\;PM_{2.5\mathit{st}},Meteorological\;term_{\mathit{st}},}\\
+        \mathrm{Landuse\;term_\mathit{s},Month_\mathit{t}, Day_\mathit{t})}
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Polynomial Regression}
+    \begin{align*}
+        \begin{split}
+        y_1=\beta_{n1}x^n+\beta_{(n-1)1}x^{n-1}+&\cdots+\beta_{21}x^2+\beta_{11}x+\beta_{01} + \epsilon_1 \\
+        y_2=\beta_{n2}x^n+\beta_{(n-1)2}x^{n-1}+&\cdots+\beta_{22}x^2+\beta_{12}x+\beta_{02} + \epsilon_2 \\
+        &\vdots \\
+        y_m=\beta_{nm}x^n+\beta_{(n-1)m}x^{n-1}+&\cdots+\beta_{2m}x^2+\beta_{1m}x+\beta_{0m} + \epsilon_m
+        \end{split}
+    \end{align*}
+    \textcolor[rgb]{0.1,0.1,0.6}{$x$ are low-cost sensor measurements; $y_m$ are the measurements from the nearest EPA station. One low-cost sensor corresponds to one equation.}
+\end{frame}
+
+\begin{frame}{Kriging with External Drift}
+    \begin{align*}
+        \begin{split}
+        \hat{\beta}^{ked}_0(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_0(s_i,t) \\
+        \hat{\beta}^{ked}_1(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_1(s_i,t) \\
+        &\vdots \\
+        \hat{\beta}^{ked}_n(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_n(s_i,t) 
+        \end{split}
+    \end{align*}
+    \textcolor[rgb]{0.1,0.1,0.6}{The square root of elevation will be used as the external drift because it has been found to be a good indicator for PM$_{2.5}$ prediction (Tunno et al., 2016).}
+\end{frame}
+
+\begin{frame}{EPA Stations}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Stations/epa.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{PurpleAir Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Stations/purpleair.jpg}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{PM$_{2.5}$ Derived from EPA Stations \& Low-cost Sensors}
     \begin{figure}
         \centering
@@ -355,6 +409,104 @@
         \label{fig:lowcost}
     \end{figure}
 \end{frame}
+
+\subsection*{Aim 3}
+
+\begin{frame}{Poisson Regression with Distributed Lag}
+    \begin{itemize}
+        \item Poisson regression with distributed lag and ZIP code-specific effects
+            \begin{equation*}
+                \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+\sum_k\lambda_k\mathrm{ZIP}_k+[\mathrm{covariates}]
+            \end{equation*}
+        \textcolor[rgb]{0.1,0.1,0.6}{The geographical area (ZIP) from which ED counts are spatially aggregated is represented by indicator variables, to control for spatially varying factors and enable the analysis to rely solely on temporal contrasts; this also stringently controls for spatial autocorrelation in the baseline ED visits across the ZIP codes (Sarnat et al., 2013).}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Covariates and Distributed Lags}
+    \begin{block}{Covariates}
+        \begin{itemize}
+            \item Dummy variables for seasons, day of week, and holidays
+            \item Dummy variables for hospitals
+            \item Polynomial splines for long-term trends and seasonality
+            \item Polynomial terms for moving averages of maximum and dew-point temperatures
+        \end{itemize}
+    \end{block}
+    \begin{block}{Distributed lags}
+        Lags 0 -- 7 as the \textit{a priori} lag structure since the effect of PM$_{2.5}$ pollution may last a longer period (Sarnat et al., 2015; Ye et al., 2017)
+    \end{block}
+\end{frame}
+
+\begin{frame}{Sensitivity Analyses}
+    \begin{itemize}
+        \item The effect of PM$_{2.5}$ exposure on lag $-1$ (misspecification and potential confounding by temporal factors)
+        \item Different lag structures for exposure (single day lags, moving average of lags, distributed lags 0 -- 3, \textit{etc.})
+        \item Different lag structures for temperatures
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bayesian Meta-Analysis}
+    \begin{itemize}
+       \item Two-level Bayesian random-effects meta-analysis
+        \begin{enumerate}
+            \item First level: for each ZIP code area$$ \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+[\mathrm{covariates}]$$
+            \item Second level: for all ZIP code effects
+            $$\beta_k=\theta_k+\epsilon_k; \quad \epsilon_k\sim N(0, \hat{V}_k)$$
+            $$\theta_k\sim N(\alpha_0+\sum_j\gamma_jX_{kj}, \tau^2)$$
+            $$\alpha_0+\sum_j\gamma_jX_{kj} \sim N(0, \nu^2)$$
+            $$\tau^2\sim \operatorname{Inv-gamma}(a_0, b_0)$$
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ Composition Estimation}
+    \begin{equation*}
+        \mathrm{Improved\;component_\mathit{i}=Improved\;PM_{2.5}\times\frac{CTM\;component_\mathit{i}}{CTM\;PM_{2.5}}}
+    \end{equation*}
+    \begin{itemize}
+        \item Using the original composition derived from CTM
+        \item Fusing CTM and ground-based composition (Friberg et al., 2016)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ and Renal Disease in Atlanta (RENAL)}
+    \begin{table}
+        \small
+        \centering
+        \begin{tabular}{c|c|c|c}
+            \hline
+            Pollutant & IQR & RENAL & RENAL\_ANY \\
+            \hline
+            PM$_{2.5}$ & 8.99 $\mu g/m^3$ & 1.008 (0.987, 1.030) & 1.010 (0.996, 1.024) \\
+            EC & 0.68 $\mu g/m^3$ & 1.016 (0.993, 1.039) & 1.014 (1.000, 1.029)** \\
+            OC & 1.75 $\mu g/m^3$ & 1.010 (0.989, 1.033) & 1.019 (1.006, 1.033)** \\
+            Sulfate & 3.52 $\mu g/m^3$ & 1.001 (0.981, 1.021) & 1.000 (0.987, 1.013) \\
+            Nitrate & 0.60 $\mu g/m^3$ & 1.022 (0.994, 1.050) & 1.007 (0.990, 1.024) \\
+            \hline
+        \end{tabular}
+    \end{table}
+    {\footnotesize * $0.05 \leq p < 0.10$ \\ ** $p < 0.05$}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ and Renal Disease in Atlanta (ARF)}
+    \begin{table}
+        \small
+        \centering
+        \begin{tabular}{c|c|c|c}
+            \hline
+            Pollutant & IQR & ARF & ARF\_ANY \\
+            \hline
+            PM$_{2.5}$ & 8.99 $\mu g/m^3$ & 1.019 (0.962, 1.080) & 1.035 (1.007, 1.063)** \\
+            EC & 0.68 $\mu g/m^3$ & 1.019 (0.959, 1.082) & 1.032 (1.004, 1.061)** \\
+            OC & 1.75 $\mu g/m^3$ & 1.001 (0.947, 1.059) & 1.035 (1.009, 1.063)** \\
+            Sulfate & 3.52 $\mu g/m^3$ & 1.032 (0.977, 1.091) & 1.025 (0.999, 1.052)* \\
+            Nitrate & 0.60 $\mu g/m^3$ & 1.051 (0.977, 1.129) & 1.039 (1.006, 1.074)** \\
+            \hline
+        \end{tabular}
+    \end{table}
+    {\footnotesize * $0.05 \leq p < 0.10$ \\ ** $p < 0.05$}
+\end{frame}
+
 
 \end{document}
 
