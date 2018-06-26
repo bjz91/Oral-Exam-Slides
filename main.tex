@@ -242,7 +242,7 @@
             \item Low-cost sensor calibration
                 \begin{itemize}
                     \item \textbf{Polynomial regression model} with measurements from EPA stations and nearby PurpleAir sensors
-                    \item \textbf{Kriging with external drift} for the interpolation of calibration coefficients 
+                    \item \textbf{Kriging with external drift} for the interpolation of calibration coefficients*
                 \end{itemize}
             \pause
             \item PM$_{2.5}$ exposure assessment
@@ -330,7 +330,19 @@
     \end{enumerate}
 \end{frame}
 
+% -------------------------------------------- %
+
 \subsection*{Aim 1}
+
+\begin{frame}{}
+    \begin{table}
+        \LARGE
+        \centering
+        \begin{tabular}{c}
+             \textcolor[rgb]{0.1,0.1,0.6}{Aim 1}
+        \end{tabular}
+    \end{table}
+\end{frame}
 
 \begin{frame}{PM$_{2.5}$ Prediction Model}
     \begin{align*}
@@ -347,7 +359,54 @@
     where $\rho$ is particle density ($g/m^3$); $r_{eff}$ is particle effective radius; $f(RH)$ is the ratio of ambient and dry extinction coefficients; $Q_{ext,dry}$ is particle extinction efficiency; $f_{PBL}$ is the AOD fraction in the boundary layer; $H_{PBL}$ is the boundary layer height.
 \end{frame}
 
+\begin{frame}{Missing AOD in New York State in 2015}
+    \begin{table}
+        \centering
+        \begin{tabular}{c|c|c|c}
+            \hline
+            Missing Type & Mean & Median & 25$^{th}$ - 75$^{th}$ Quantiles \\
+            \hline
+            Overall & 90.27\% & 96.54\% & 87.62\% -- 99.84\% \\
+            Cloud & 75.58\% & 79.47\% & 64.74\% -- 91.48\% \\
+            Snow & 6.14\% & 0\% & 0\% -- 2.48\% \\
+            Snow season* & 21.15\% & 14.03\% & 5.23\% -- 31.18\% \\
+            \hline
+        \end{tabular}
+    \end{table}
+    {\footnotesize * First 15 weeks of 2015}
+\end{frame}
+
+\begin{frame}{Original and Gap-filled AOD in NYS}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure21.png}
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure22.png} \\
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure25.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Importance of Snow Parameter}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/snow_before.png}
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/snow_after.png}
+        \caption{Variable importance of snow fraction in 1) snow season (left) and 2) the rest of the year (right)}
+    \end{figure}
+\end{frame}
+
+% -------------------------------------------- %
+
 \subsection*{Aim 2}
+
+\begin{frame}{}
+    \begin{table}
+        \LARGE
+        \centering
+        \begin{tabular}{c}
+             \textcolor[rgb]{0.1,0.1,0.6}{Aim 2}
+        \end{tabular}
+    \end{table}
+\end{frame}
 
 \begin{frame}{Benchmark Strategy for Low-cost PM$_{2.5}$ Measurements}
     \begin{block}{Step 1}
@@ -375,6 +434,39 @@
     \textcolor[rgb]{0.1,0.1,0.6}{$x$ are low-cost sensor measurements; $y_m$ are the measurements from the nearest EPA station. One low-cost sensor corresponds to one equation.}
 \end{frame}
 
+\begin{frame}{Errors of Low-cost Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth]{img/appendix/Aim2/kelly2017.png}
+        \caption{Low-cost sensor PM$_{2.5}$ (PMS) and FEM PM$_{2.5}$ (TEOM). (Kelly et al., 2017)}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Errors of Low-cost Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.48\textwidth]{img/appendix/Aim2/scatter_reg.jpg}
+        \includegraphics[width=0.48\textwidth]{img/appendix/Aim2/hist.png}
+        \caption{Left: AQS/Dylos before adjusting; Right: Histogram of errors}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Errors of Low-cost Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Aim2/time_series.jpg}
+        \caption{Time-series for AQS/Dylos PM2.5; \textcolor[rgb]{1,0,0}{Red} -- AQS, \textcolor[rgb]{0,0,1}{Blue} -- Dylos}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Collocation}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.32\textwidth]{img/appendix/Aim2/collocation.png}
+    \end{figure}
+    We will experiment several distances from near to far to fit the model and then use cross-validation to determine which distance is suitable for the ``collocation''.
+\end{frame}
+
 \begin{frame}{Kriging with External Drift}
     \begin{align*}
         \begin{split}
@@ -384,33 +476,77 @@
         \hat{\beta}^{ked}_n(s,t)=\sum_{i=1}^m&\lambda^{ked}_{(s_i,t)}\times\beta_n(s_i,t) 
         \end{split}
     \end{align*}
-    \textcolor[rgb]{0.1,0.1,0.6}{The square root of elevation will be used as the external drift because it has been found to be a good indicator for PM$_{2.5}$ prediction (Tunno et al., 2016).}
+    \textcolor[rgb]{0.1,0.1,0.6}{\small The square root of elevation will be used as the external drift because it is a good indicator for PM$_{2.5}$ prediction (Tunno et al., 2016). Other interpolation methods will also be examined, and using cross-validation to determine which method is the most suitable one.}
 \end{frame}
 
 \begin{frame}{EPA Stations}
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{img/appendix/Stations/epa.jpg}
+        \includegraphics[width=\textwidth]{img/appendix/Aim2/Stations/epa.jpg}
     \end{figure}
 \end{frame}
 
 \begin{frame}{PurpleAir Sensors}
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{img/appendix/Stations/purpleair.jpg}
+        \includegraphics[width=\textwidth]{img/appendix/Aim2/Stations/purpleair.jpg}
     \end{figure}
 \end{frame}
 
-\begin{frame}{PM$_{2.5}$ Derived from EPA Stations \& Low-cost Sensors}
+\begin{frame}{PM$_{2.5}$ Derived from EPA Stations and Low-cost Sensors}
     \begin{figure}
         \centering
-        \includegraphics[width=0.52\textwidth]{img/appendix/aqs.jpg}
-        \includegraphics[width=0.52\textwidth]{img/appendix/aqs_dylos.jpg}
-        \label{fig:lowcost}
+        \includegraphics[width=0.52\textwidth]{img/appendix/Aim2/aqs.jpg}
+        \includegraphics[width=0.52\textwidth]{img/appendix/Aim2/aqs_dylos.jpg}
+        \caption{Left: PM$_{2.5}$ derived from EPA measurements (6 stations, CV R$^2 = 0.5$); Right: PM$_{2.5}$ derived from EPA and low-cost sensor measurements (45 stations, CV R$^2 = 0.7$)}
     \end{figure}
 \end{frame}
 
+\begin{frame}{Mechanism of PurpleAir Sensors}
+    \textbf{Optical light scattering/Laser counter}: PurpleAir sensors use a fan to draw air past a laser, causing reflections from any particles in the air. These reflections are used to count particles in six sizes between 0.3 $\mu m$ and 10 $\mu m$ diameter. These particle counts are processed by the sensor to calculate the PM$_1$, PM$_{2.5}$ and PM$_{10}$ mass in $\mu g/m^3$.
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{img/appendix/Aim2/sensor.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{High/Low Volume Samplers (FRM)}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/appendix/Aim2/hivol-sampler.jpg}
+    \end{figure}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{enumerate}
+            \item The inlet removes particles larger than $10\;\mu m$/$2.5\;\mu m$ by using their greater inertia
+            \item Measuring the volume of air sampled and weighing the filters before and after sampling determines the concentration of PM$_{10}$/PM$_{2.5}$ particles in the air.
+        \end{enumerate}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Beta Attenuation Monitoring (FEM)}
+    \begin{itemize}
+        \item BAM employs the absorption of beta radiation\footnote{Beta radiation is a high-energy, high-speed electron or positron emitted by the radioactive decay of an atomic nucleus during the process of beta decay.} by solid particles extracted from air flow. 
+        \item The main principle is based on a kind of Bouguer (Lambert–Beer) law: the amount by which the flow of beta radiation (electrons) is attenuated by a solid matter is \textbf{exponentially dependent on its mass} and not on any other feature (such as density, chemical composition or some optical or electrical properties) of this matter.
+    \end{itemize}
+    
+   
+\end{frame}
+
+% -------------------------------------------- %
+
 \subsection*{Aim 3}
+
+\begin{frame}{}
+    \begin{table}
+        \LARGE
+        \centering
+        \begin{tabular}{c}
+             \textcolor[rgb]{0.1,0.1,0.6}{Aim 3}
+        \end{tabular}
+    \end{table}
+\end{frame}
 
 \begin{frame}{Poisson Regression with Distributed Lag}
     \begin{itemize}
@@ -437,11 +573,13 @@
 \end{frame}
 
 \begin{frame}{Sensitivity Analyses}
-    \begin{itemize}
-        \item The effect of PM$_{2.5}$ exposure on lag $-1$ (misspecification and potential confounding by temporal factors)
-        \item Different lag structures for exposure (single day lags, moving average of lags, distributed lags 0 -- 3, \textit{etc.})
+    \begin{enumerate}
+        \item The effect of PM$_{2.5}$ exposure on lag $-1$ \textcolor[rgb]{0.1,0.1,0.6}{(misspecification and potential confounding by temporal factors)}
+        \item Different lag structures for exposure \textcolor[rgb]{0.1,0.1,0.6}{(single day lags, moving average of lags, distributed lags 0 -- 3, \textit{etc.})}
         \item Different lag structures for temperatures
-    \end{itemize}
+        \item Alternating time trend control \textcolor[rgb]{0.1,0.1,0.6}{(different knots specification)}
+        \item Co-pollutants using two-pollutant models \textcolor[rgb]{0.1,0.1,0.6}{(potential for confounding of selected single-pollutant results)}
+    \end{enumerate}
 \end{frame}
 
 
@@ -467,6 +605,31 @@
         \item Using the original composition derived from CTM
         \item Fusing CTM and ground-based composition (Friberg et al., 2016)
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Considerations about PM$_{2.5}$ Component Selection}
+    \begin{itemize}
+        \item We selected species that represented different chemical component classes, which may plausibly confer different toxicities based on different chemical properties
+        \item Consideration was also given to species associated with health outcomes in previous studies
+        \item The concentrations of the species should be relatively high, with a small samples below the detection limit (BDL) (BDL generally $<5\%$)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sample Size and Power}
+    For a simple Poisson regression (take PM$_{2.5}$ as an example):
+    \begin{itemize}
+        \item Mean concentration: $15\;\mu g/m^3$
+        \item Standard deviation: $7\;\mu g/m^3$
+        \item Interquartile range: $9\;\mu g/m^3$
+        \item Expected rate ratio: 1.035
+        \item $\alpha$-level: 5\% (one-sided, $RR \geq 1.035$)
+        \item Power: 0.8
+    \end{itemize}
+    The minimum sample size is \textbf{8741 counts}. If the average daily counts for ARF is 10 $person/day$ in a city, there should be 874 days' data ($\sim 2.4\;years$).
+\end{frame}
+
+\begin{frame}{Kidney Disease Burden Caused by PM$_{2.5}$ Exposure}
+    Population attributable fraction (PAF) represents the proportional reduction in population disease that would occur if exposure to PM$_{2.5}$ was reduced to the Environmental Protection Agency's (EPA) recommended levels of 12 $\mu g/m^3$ (Bowe et al., 2018)
 \end{frame}
 
 \begin{frame}{PM$_{2.5}$ and Renal Disease in Atlanta (RENAL)}
