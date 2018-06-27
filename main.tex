@@ -117,7 +117,7 @@
     \begin{itemize}
         \item<1-> PM$_{2.5}$ is known to trigger or worsen various health outcomes (\textit{e.g.,} heart attack, asthma, and other respiratory problems)
         \item<2-> Regulatory air quality stations for PM$_{2.5}$ measurements lack spatiotemporal coverage
-        \item<3-> Satellite aerosol optical depth (AOD) has been increasingly applied to supplement ground PM$_{2.5}$ measurements
+        \item<3-> Satellite \textbf{aerosol optical depth (AOD)} has been increasingly applied to supplement ground PM$_{2.5}$ measurements
     \end{itemize}
     \vspace{-0.25cm}
     \begin{figure}
@@ -132,7 +132,7 @@
     \begin{enumerate}
         \item<1> Non-random missing satellite AOD caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD and PM$_{2.5}$ levels}
+                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD levels}
                 \item \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow-AOD interaction}
             \end{itemize}
         \textcolor[rgb]{0.1,0.1,0.6}{Cloud and snow led to a $\sim$80\% missing AOD data in New York State in 2015}
@@ -479,6 +479,22 @@
     \textcolor[rgb]{0.1,0.1,0.6}{\small The square root of elevation will be used as the external drift because it is a good indicator for PM$_{2.5}$ prediction (Tunno et al., 2016). Other interpolation methods will also be examined, and using cross-validation to determine which method is the most suitable one.}
 \end{frame}
 
+\begin{frame}{Interpolations}
+    \begin{minipage}{0.58\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{img/appendix/Aim2/interpolation.jpg}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}{0.38\textwidth}
+        \small
+        \begin{itemize}
+            \item Different methods can produce quite different spatial representations and in-depth knowledge of the phenomenon is needed to evaluate which one is the closest to reality.
+            \item the preservation of geometrical properties is in some cases more important than actual accuracy.
+        \end{itemize}
+    \end{minipage}
+\end{frame}
+
 \begin{frame}{EPA Stations}
     \begin{figure}
         \centering
@@ -490,6 +506,14 @@
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{img/appendix/Aim2/Stations/purpleair.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{PM$_{2.5}$ Derived from EPA Stations and Low-cost Sensors}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/appendix/Aim2/im_location.png}
+        \caption{Locations of AQS and Dylos sensors}
     \end{figure}
 \end{frame}
 
@@ -632,6 +656,13 @@
     Population attributable fraction (PAF) represents the proportional reduction in population disease that would occur if exposure to PM$_{2.5}$ was reduced to the Environmental Protection Agency's (EPA) recommended levels of 12 $\mu g/m^3$ (Bowe et al., 2018)
 \end{frame}
 
+\begin{frame}{Summary Statistics in Atlanta}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Aim3/table.jpg}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{PM$_{2.5}$ and Renal Disease in Atlanta (RENAL)}
     \begin{table}
         \small
@@ -670,6 +701,58 @@
     {\footnotesize * $0.05 \leq p < 0.10$ \\ ** $p < 0.05$}
 \end{frame}
 
+\begin{frame}{Possible mechanisms of PM$_{2.5}$ on kidney disease}
+    \begin{enumerate}
+        \item Inhaled particles provoke pulmonary inflammation which may then lead to systemic inflammation.
+        \item The mechanism involves pollutant-induced disturbances in the lung autonomic nervous system.
+        \item Air-borne particulates enter the bloodstream where they may then interact with tissue components to promote the observed pathologic effects. 
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Renal Disease and Other Diseases}
+    \begin{itemize}
+        \item \textbf{Pulmonary disease}: Several studies have reported consistent association between ARF and dysfunction of extrarenal organs, particularly the lungs.
+        \item \textbf{Cardiovascular disease}: Impaired renal function, as determined from the estimated glomerular filtration rate (eGFR), is associated with cardiovascular events and mortality.
+        \item \textbf{Diabetes/hypertension}: People with pre-existing chronic diseases such as diabetes or hypertension are more vulnerable to the adverse effect of air pollution.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Primary Diagnoses (RENAL)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Aim3/renal_pri.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Primary Diagnoses (ARF)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/appendix/Aim3/arf_pri.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Sources of PM$_{2.5}$ Composition}
+    \begin{table}
+    \centering
+    \begin{tabular}{|c|p{0.6\textwidth}|}
+        \hline
+        \textbf{PM2.5 Composition} & \textbf{Sources}  \\
+        \hline
+        BC/EC & Combustion sources (primary) \\
+        \hline
+        VOC & Biogenic emissions, fossil fuel combustion \\
+        \hline
+        Sulfate &  Sulfur dioxide emissions from power plants, industrial facilities, and traffic sources (secondary) \\
+        \hline
+        Nitrate & Nitrogen oxides released from power plants, mobile sources, and other combustion sources (secondary) \\
+        \hline
+        Ammonium & Agricultural sources \\
+        \hline 
+        Metals &  Oil combustion, crustal dust \\
+        \hline
+    \end{tabular}
+\end{table}
+\end{frame}
 
 \end{document}
 
