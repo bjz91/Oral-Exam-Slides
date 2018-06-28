@@ -101,6 +101,8 @@
     \insertframenumber/\inserttotalframenumber
 }
 
+\usepackage{hyperref}
+
 
 % Let's get started
 \begin{document}
@@ -314,6 +316,28 @@
 \appendix
 \section<presentation>*{\appendixname}
 
+\begin{frame}{Difficulties}
+    \begin{enumerate}
+        \item Aim 1 {
+            \begin{itemize}
+                \item Incomplete considerations about cloud/snow-AOD interactions (fraction parameters may not be sufficient) \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:missing}]}
+            \end{itemize}
+        }
+        \item Aim 2 {
+            \begin{itemize}
+                \item Measurement errors may not meet the equal variance assumption (heteroskedasticity) \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:error}]}
+                \item Determination of the distance from EPA stations to nearby low-cost sensors \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:col}]}
+            \end{itemize}
+        }
+        \item Aim 3 {
+            \begin{itemize}
+                \item Sample size and statistical power \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:power}]}
+                \item Effects of other diseases on the estimated associations (removal/stratification) \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:pri}]}
+            \end{itemize}
+        }
+    \end{enumerate}
+\end{frame}
+
 \begin{frame}{Challenges and Possible Solutions}
     \begin{enumerate}
         \item Effectively calibrate and utilize the low-cost sensors in PM$_{2.5}$ prediction
@@ -360,6 +384,7 @@
 \end{frame}
 
 \begin{frame}{Missing AOD in New York State in 2015}
+    \label{frm:missing}
     \begin{table}
         \centering
         \begin{tabular}{c|c|c|c}
@@ -397,7 +422,6 @@
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure21.png}
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure22.png} \\
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure25.png}
-        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure44.png}
     \end{figure}
 \end{frame}
 
@@ -405,8 +429,8 @@
     \begin{figure}
         \centering
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/snow_before.png}
-        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/snow_after.png}
-        \caption{Variable importance of snow fraction in 1) snow season (left) and 2) the rest of the year (right)}
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/snow_after.png}\\
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure44.png}
     \end{figure}
 \end{frame}
 
@@ -451,6 +475,7 @@
 \end{frame}
 
 \begin{frame}{Errors of Low-cost Sensors}
+    \label{frm:error}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\textwidth]{img/appendix/Aim2/kelly2017.png}
@@ -471,11 +496,12 @@
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{img/appendix/Aim2/time_series.jpg}
-        \caption{Time-series for AQS/Dylos PM2.5; \textcolor[rgb]{1,0,0}{Red} -- AQS, \textcolor[rgb]{0,0,1}{Blue} -- Dylos}
+        \caption{Time-series for AQS/Dylos PM2.5; \textcolor[rgb]{1,0,0}{Red} -- AQS, \textcolor[rgb]{0,0,1}{Blue} -- Dylos. Dylos sensors track well the diurnal PM$_{2.5}$ variations recorded by EPA stations.}
     \end{figure}
 \end{frame}
 
 \begin{frame}{Collocation}
+    \label{frm:col}
     \begin{figure}
         \centering
         \includegraphics[width=0.32\textwidth]{img/appendix/Aim2/collocation.png}
@@ -596,13 +622,31 @@
     \end{table}
 \end{frame}
 
+\begin{frame}{Sample Size and Power}
+    \label{frm:power}
+    For a simple Poisson regression (take PM$_{2.5}$ as an example):
+    \begin{itemize}
+        \item Mean concentration: $15\;\mu g/m^3$
+        \item Standard deviation: $7\;\mu g/m^3$
+        \item Interquartile range: $9\;\mu g/m^3$
+        \item Expected rate ratio: 1.035
+        \item $\alpha$-level: 5\% (one-sided, $RR \geq 1.035$)
+        \item Power: 0.8
+    \end{itemize}
+    The minimum sample size is \textbf{8741 counts}. If the average daily counts for ARF is 10 $person/day$ in a city, there should be 874 days' data ($\sim 2.4\;years$).
+\end{frame}
+
 \begin{frame}{Poisson Regression with Distributed Lag}
     \begin{itemize}
         \item Poisson regression with distributed lag and ZIP code-specific effects
             \begin{equation*}
                 \mathrm{log(E(Y_{kt}))}=\alpha+\sum_i\beta_i\mathrm{Pollution}_{kti}+\sum_k\lambda_k\mathrm{ZIP}_k+[\mathrm{covariates}]
             \end{equation*}
-        \textcolor[rgb]{0.1,0.1,0.6}{The geographical area (ZIP) from which ED counts are spatially aggregated is represented by indicator variables, to control for spatially varying factors and enable the analysis to rely solely on temporal contrasts; this also stringently controls for spatial autocorrelation in the baseline ED visits across the ZIP codes (Sarnat et al., 2013).}
+        \textcolor[rgb]{0.1,0.1,0.6}{The geographical area (ZIP) from which ED counts are spatially aggregated is represented by indicator variables  (Sarnat et al., 2013),}
+            \begin{itemize}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{to control for spatially varying factors and enable the analysis to rely solely on temporal contrasts;}
+                \item \textcolor[rgb]{0.1,0.1,0.6}{this also stringently controls for spatial autocorrelation in the baseline ED visits across the ZIP codes.}
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -629,7 +673,6 @@
         \item Co-pollutants using two-pollutant models \textcolor[rgb]{0.1,0.1,0.6}{(potential for confounding of selected single-pollutant results)}
     \end{enumerate}
 \end{frame}
-
 
 \begin{frame}{Bayesian Meta-Analysis}
     \begin{itemize}
@@ -661,19 +704,6 @@
         \item Consideration was also given to species associated with health outcomes in previous studies
         \item The concentrations of the species should be relatively high, with a small samples below the detection limit (BDL) (BDL generally $<5\%$)
     \end{itemize}
-\end{frame}
-
-\begin{frame}{Sample Size and Power}
-    For a simple Poisson regression (take PM$_{2.5}$ as an example):
-    \begin{itemize}
-        \item Mean concentration: $15\;\mu g/m^3$
-        \item Standard deviation: $7\;\mu g/m^3$
-        \item Interquartile range: $9\;\mu g/m^3$
-        \item Expected rate ratio: 1.035
-        \item $\alpha$-level: 5\% (one-sided, $RR \geq 1.035$)
-        \item Power: 0.8
-    \end{itemize}
-    The minimum sample size is \textbf{8741 counts}. If the average daily counts for ARF is 10 $person/day$ in a city, there should be 874 days' data ($\sim 2.4\;years$).
 \end{frame}
 
 \begin{frame}{Kidney Disease Burden Caused by PM$_{2.5}$ Exposure}
@@ -742,6 +772,7 @@
 \end{frame}
 
 \begin{frame}{Primary Diagnoses (RENAL)}
+    \label{frm:pri}
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{img/appendix/Aim3/renal_pri.png}
