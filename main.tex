@@ -374,6 +374,21 @@
         \end{tabular}
     \end{table}
     {\footnotesize * First 15 weeks of 2015}
+    \begin{block}{Other types of missing data}
+        \begin{itemize}
+            \item Inland water bodies
+            \item No measurement (outside the satellite scanning range)
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Current Methods for AOD Gap-Filling}
+    \begin{enumerate}
+        \item Adjust or improve current aerosol retrieval algorithms
+        \item AOD/PM$_{2.5}$ interpolation by spatial autocorrelation
+        \item Simulated AOD from chemical transport models
+        \item AOD regression by statistical/machine learning models
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}{Original and Gap-filled AOD in NYS}
@@ -382,6 +397,7 @@
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure21.png}
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure22.png} \\
         \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure25.png}
+        \includegraphics[width=0.5\textwidth]{img/appendix/Aim1/figure44.png}
     \end{figure}
 \end{frame}
 
@@ -532,6 +548,14 @@
         \centering
         \includegraphics[width=0.4\textwidth]{img/appendix/Aim2/sensor.png}
     \end{figure}
+\end{frame}
+
+\begin{frame}{Quality of Low-Cost Sensors Varies}
+    \begin{itemize}
+        \item Low-cost monitors operate based on light scattering, so uncorrected measurements may depend on \textbf{particle composition}
+        \item Particles are detected under ambient humidity, so \textbf{hygroscopic growth} under high humidity conditions may change the particle size
+        \item \textbf{Quality degradation} over time
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{High/Low Volume Samplers (FRM)}
