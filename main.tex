@@ -10,8 +10,8 @@
 % modify this file as you see fit and even to delete this copyright
 % notice. 
 
-% \documentclass{beamer}
-\documentclass[handout]{beamer} % Disable animation temporally
+\documentclass{beamer}
+%\documentclass[handout]{beamer} % Disable animation temporally
 
 % Replace the \documentclass declaration above
 % with the following two lines to typeset your 
@@ -117,9 +117,11 @@
 \subsection{Background}
 \begin{frame}{Background}
     \begin{itemize}
-        \item<1-> PM$_{2.5}$ is known to trigger or worsen various health outcomes (\textit{e.g.,} heart attack, asthma, and other respiratory problems)
-        \item<2-> Regulatory air quality stations for PM$_{2.5}$ measurements lack spatiotemporal coverage
-        \item<3-> Satellite \textbf{aerosol optical depth (AOD)} has been increasingly applied to supplement ground PM$_{2.5}$ measurements
+        \item PM$_{2.5}$ is known to trigger or worsen various health outcomes (\textit{e.g.,} heart attack, asthma, and other respiratory problems)
+        \pause
+        \item Regulatory air quality stations for PM$_{2.5}$ measurements lack spatiotemporal coverage
+        \pause
+        \item Satellite \textbf{aerosol optical depth (AOD)} has been increasingly applied to supplement ground PM$_{2.5}$ measurements
     \end{itemize}
     \vspace{-0.25cm}
     \begin{figure}
@@ -132,14 +134,14 @@
 \begin{frame}{Problems}
     \setbeamercovered{transparent} 
     \begin{enumerate}
-        \item<1> Non-random missing satellite AOD caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
+        \item<1-> Non-random missing satellite AOD caused by cloud cover and high surface brightness (\textit{e.g.,} snow/ice) 
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD levels}
-                \item \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow-AOD interaction}
+                \item<2-> \textcolor[rgb]{1,0.4,0}{Cloud/snow interacting with AOD levels}
+                \item<3-> \textcolor[rgb]{1,0.4,0}{No gap-filling approach considering snow-AOD interaction}
             \end{itemize}
-        \textcolor[rgb]{0.1,0.1,0.6}{Cloud and snow led to a $\sim$80\% missing AOD data in New York State in 2015}
     \end{enumerate}
     \vspace{-0.1cm}
+    \textcolor[rgb]{0.1,0.1,0.6}{Cloud and snow led to a $\sim$80\% missing AOD data in New York State in 2015}
     \begin{figure}
         \centering
         \includegraphics[width=0.6\textwidth]{img/missing.jpg}
@@ -150,14 +152,14 @@
     \setbeamercovered{transparent} 
     \begin{enumerate}
         \setcounter{enumi}{1}
-        \item Sparse regulatory monitoring networks which limit PM$_{2.5}$ estimations with spatial details
+        \item<1-> Sparse regulatory monitoring networks which limit PM$_{2.5}$ estimations with spatial details
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Inaccurate estimations in the areas without ground stations}
-                \item \textcolor[rgb]{1,0.4,0}{Underuse of low-cost, portable PM$_{2.5}$ sensors (\textit{e.g.,} PurpleAir)}
+                \item<2-> \textcolor[rgb]{1,0.4,0}{Inaccurate estimations in the areas without ground stations}
+                \item<3-> \textcolor[rgb]{1,0.4,0}{Underuse of low-cost, portable PM$_{2.5}$ sensors (\textit{e.g.,} PurpleAir)}
             \end{itemize}
-        \textcolor[rgb]{0.1,0.1,0.6}{In California, there are 629 PurpleAir and 154 EPA stations}
     \end{enumerate}
-    \vspace{-0.2cm}
+    \vspace{-0.1cm}
+    \textcolor[rgb]{0.1,0.1,0.6}{In California, there are 629 PurpleAir and 154 EPA stations}
     \begin{figure}
         \centering
         \includegraphics[width=0.48\textwidth]{img/bayarea.jpg}
@@ -168,16 +170,16 @@
     \setbeamercovered{transparent} 
     \begin{enumerate}
         \setcounter{enumi}{2}
-        \item Evidence showing the relationship between long-term PM$_{2.5}$ exposure and renal function decline
+        \item<1-> Evidence showing the relationship between long-term PM$_{2.5}$ exposure and renal function decline
             \begin{itemize}
-                \item \textcolor[rgb]{1,0.4,0}{Unknown effect of short-term PM$_{2.5}$ exposure on the kidney}
-                \item \textcolor[rgb]{1,0.4,0}{Worthy of being studied with improved PM$_{2.5}$ exposures}
+                \item<2-> \textcolor[rgb]{1,0.4,0}{Unknown effect of short-term PM$_{2.5}$ exposure on the kidney}
+                \item<3-> \textcolor[rgb]{1,0.4,0}{Worthy of being studied with improved PM$_{2.5}$ exposures}
             \end{itemize}
-        \textcolor[rgb]{0.1,0.1,0.6}{Inhaled inert gold nanoparticles enter the bloodstreams and are detected in the urine within minutes after exposure \textit{\small (Miller et al., ACS Nano, 2017)}}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.8\textwidth]{img/exposure.jpg}
-        \end{figure}
+         \textcolor[rgb]{0.1,0.1,0.6}{\small Diesel exhaust particles in the lung aggravated the renal, pulmonary, and systemic effects of cisplatin\footnote{A potent anticancer drug that is commonly used to treat multiple solid human cancers}-induced acute renal failure \textit{(Nemmar et al., 2009)}.}
+         \begin{figure}
+             \centering
+             \includegraphics[width=0.75\textwidth]{img/appendix/cp_dep.jpg}
+         \end{figure}
     \end{enumerate}
 \end{frame}
 
@@ -272,12 +274,12 @@
 
 \subsection{Aim 3}
 \begin{frame}{Aim 3}{Short-term PM$_{2.5}$ exposure and ED visits for renal disease}
-    \setbeamercovered{transparent} 
     \begin{block}{Approach}
         \begin{itemize}
         \setlength{\belowdisplayskip}{-10pt}
-            \item<1> \textbf{Poisson regression} with distributed lag and ZIP code-specific effects
-            \item<2> Two-level Bayesian random-effects meta-analysis
+            \item \textbf{Poisson regression} with distributed lag and ZIP code-specific effects
+            \pause
+            \item Two-level Bayesian random-effects meta-analysis
                 \begin{enumerate}
                 \setlength{\belowdisplayskip}{-10pt}
                     \item First level: \textbf{Poisson regression} for each ZIP code area
@@ -286,6 +288,7 @@
                 \end{enumerate}
         \end{itemize}
     \end{block}
+    \pause
     \begin{block}{Study Domain}
         \begin{itemize}
         \item Extended from Southern California to \textbf{more major cities in California} with high populations and dense PurpleAir networks (\textit{e.g.,} San Francisco Bay Area, Sacramento, and Fresno).
@@ -332,7 +335,7 @@
         \item Aim 3 {
             \begin{itemize}
                 \item Sample size and statistical power \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:power}]}
-                \item Effects of other diseases on the estimated associations (removal/stratification) \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:pri}]}
+                \item Effects of other diseases on the estimated associations (stratification/co-pollutant analysis) \textcolor[rgb]{0.1,0.1,0.6}{[p\ref{frm:pri}]}
             \end{itemize}
         }
     \end{enumerate}
@@ -375,8 +378,24 @@
     \end{align*}
 \end{frame}
 
+\begin{frame}{Meteorological Parameters}
+     \begin{itemize}
+            \item \textbf{Potential evaporation}: PE is defined as the amount of evaporation that would occur if a sufficient water source were available. Climates where PE is always greater than precipitation are termed \textit{arid climates}.
+            \item \textbf{Convective available potential energy}: CAPE is the amount of energy a parcel of air would have if lifted a certain distance vertically through the atmosphere. CAPE is effectively the positive buoyancy of an air parcel and is an indicator of atmospheric instability
+            \item \textbf{Downward Shortwave Radiation}: DSR is an estimate of the total amount of shortwave radiation (both direct and diffuse) that reaches the Earth’s surface.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{Meteorological Parameters}
+     \begin{itemize}
+            \item \textbf{Cloud drop effective radius}: A weighted mean of the size distribution of cloud droplets.
+            \item \textbf{Cloud optical depth}: The vertical optical thickness between the top and bottom of a cloud.
+            \item \textbf{Emissivity}: The ratio of the energy radiated from a material's surface to that radiated from a blackbody.
+        \end{itemize}
+\end{frame}
+
 \begin{frame}{Relationship between PM$_{2.5}$ and AOD}
-    AOD is defined as the integral of aerosol extinction coefficients along the entire vertical atmospheric column. Its relationship with ground-level PM2.5, assuming a well-mixed boundary layer and no pollution layers aloft, can be expressed as (Koelemeijer et al., 2006)
+    AOD is defined as the integral of aerosol extinction coefficients along the entire vertical atmospheric column. Its relationship with ground-level PM$_{2.5}$, assuming a well-mixed boundary layer and no pollution layers aloft, can be expressed as (Koelemeijer et al., 2006)
     \begin{equation*}
         PM_{2.5}=\frac{4\rho r_{eff}}{3f(RH)\times Q_{ext,dry}}\times\frac{f_{PBL}}{H_{PBL}}\times AOD
     \end{equation*}
@@ -532,7 +551,7 @@
         \small
         \begin{itemize}
             \item Different methods can produce quite different spatial representations and in-depth knowledge of the phenomenon is needed to evaluate which one is the closest to reality.
-            \item the preservation of geometrical properties is in some cases more important than actual accuracy.
+            \item The preservation of geometrical properties is in some cases more important than actual accuracy.
         \end{itemize}
     \end{minipage}
 \end{frame}
@@ -807,6 +826,14 @@
         \hline
     \end{tabular}
 \end{table}
+\end{frame}
+
+\begin{frame}{Nano-particles}
+Inhaled inert gold nanoparticles enter the bloodstreams and are detected in the urine within minutes after exposure \textit{\small (Miller et al., ACS Nano, 2017)}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/exposure.jpg}
+\end{figure}
 \end{frame}
 
 \end{document}
